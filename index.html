@@ -5,11 +5,97 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		.preloader {
+			/*фиксированное позиционирование*/
+			position: fixed;
+			/* координаты положения */
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			/* фоновый цвет элемента */
+			background: #000;
+			/* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+			z-index: 1001;
+		}
+
+		.preloader__row {
+			position: relative;
+			top: 50%;
+			left: 50%;
+			width: 70px;
+			height: 70px;
+			margin-top: -35px;
+			margin-left: -35px;
+			text-align: center;
+			animation: preloader-rotate 2s infinite linear;
+		}
+
+		.preloader__item {
+			position: absolute;
+			display: inline-block;
+			top: 0;
+			background-color: #fff;
+			border-radius: 100%;
+			width: 35px;
+			height: 35px;
+			animation: preloader-bounce 2s infinite ease-in-out;
+		}
+
+		.preloader__item:last-child {
+			top: auto;
+			bottom: 0;
+			animation-delay: -1s;
+		}
+
+		@keyframes preloader-rotate {
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes preloader-bounce {
+
+			0%,
+			100% {
+				transform: scale(0.1);
+			}
+
+			50% {
+				transform: scale(1);
+			}
+		}
+
+		.loaded_hiding .preloader {
+			transition: 0.3s opacity;
+			opacity: 0;
+		}
+
+		.loaded .preloader {
+			display: none;
+		}
+	</style>
 	<link rel="stylesheet" href="css/style.css">
 	<title>Aperture</title>
+	<script>
+		window.onload = function () {
+			document.body.classList.add('loaded_hiding');
+			window.setTimeout(function () {
+				document.body.classList.add('loaded');
+				document.body.classList.remove('loaded_hiding');
+			}, 500);
+		}
+	</script>
 </head>
 
 <body>
+	<div class="preloader">
+		<div class="preloader__row">
+			<div class="preloader__item"></div>
+			<div class="preloader__item"></div>
+		</div>
+	</div>
 	<div class="wrapper">
 		<div class="burger">
 			<div class="burger__wrapper">
@@ -178,6 +264,91 @@
 				</div>
 				<div class="sunset__li block__li"><img src="img/location-icon.png" alt="">
 					<p>Costa Rica</p>
+				</div>
+			</div>
+		</div>
+		<div class="client">
+			<div class="client__title">Past clients</div>
+			<div class="client__subtitle">Trusted by your favourite companies</div>
+			<div class="client__list container">
+				<div class="client__li"><img src="img/client/1.png" alt=""></div>
+				<div class="client__li"><img src="img/client/2.png" alt=""></div>
+				<div class="client__li"><img src="img/client/3.png" alt=""></div>
+				<div class="client__li"><img src="img/client/4.png" alt=""></div>
+				<div class="client__li"><img src="img/client/5.png" alt=""></div>
+			</div>
+		</div>
+		<div class="star sunset">
+			<div class="sunset__main">
+				<div class="sunset__title">Star fall in the Himalayas</div>
+				<div class="sunset__text">Nulla rhoncus feugiat eros quis consectetur. Morbi neque ex, condimentum dapibus
+					congue et, vulputate ut ligula.</div>
+			</div>
+			<div class="sunset__block block">
+				<div class="sunset_li block__li"><img src="img/time-icon.png" alt="">
+					<p>6''</p>
+				</div>
+				<div class="sunset__li block__li"><img src="img/sphere-icon.png" alt="">
+					<p>f/11</p>
+				</div>
+				<div class="sunset__li block__li"><img src="img/iso-icon.png" alt="">
+					<p>800</p>
+				</div>
+				<div class="sunset__li block__li"><img src="img/location-icon.png" alt="">
+					<p>Nepal</p>
+				</div>
+			</div>
+		</div>
+		<div class="need-help">
+			<div class="need-help__title">Need help with photography or videography?</div>
+			<div class="need-help__subtitle">We're here for you!</div>
+			<button class="need-help__button"><span></span>Get in touch</button>
+		</div>
+		<div class="footer">
+			<div class="footer__container container">
+				<div class="footer__block-one">
+					<div class="footer__block-one--main">
+						<div class="footer__block-one--logo"><img src="img/logo.png" alt=""></div>
+						<div class="footer__block-one--subtitle">Photographers & videographers capturing the world around us.
+						</div>
+					</div>
+					<div class="footer__block-one--list">
+						<div class="footer__block-one--column">
+							<div class="footer__block-one--title">Business areas</div>
+							<a href="" class="footer__block-one--a">Product Photography</a>
+							<a href="" class="footer__block-one--a">Architecture Photography</a>
+							<a href="" class="footer__block-one--a">Drone Photography</a>
+							<a href="" class="footer__block-one--a">Wildlife Photography</a>
+						</div>
+						<div class="footer__block-one--column">
+							<div class="footer__block-one--title">Pages</div>
+							<a href="" class="footer__block-one--a">Gear cage</a>
+							<a href="" class="footer__block-one--a">Featured images</a>
+							<a href="" class="footer__block-one--a">Contact</a>
+							<a href="" class="footer__block-one--a">Style guide</a>
+							<a href="" class="footer__block-one--a">Instructions</a>
+							<a href="" class="footer__block-one--a">Changelog</a>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="footer__block-two">
+					<div class="footer__block-two--main">
+						<div class="footer__block-two--title">Subscribe to our newsletter</div>
+						<div class="footer__block-two--text">Read about all the things we do.</div>
+					</div>
+					<div class="footer__block-two--input">
+						<input type="text" placeholder="example@gmail.com">
+					</div>
+				</div>
+				<hr>
+				<div class="footer__block-three">
+					<div class="footer__block-three--text">© Aperture Photography, Inc. All rights reserved.Licensing</div>
+					<div class="footer__block-three--social">
+						<a href=""><img src="img/twitter-icon.png" alt=""></a>
+						<a href=""><img src="img/instagram-icon.png" alt=""></a>
+						<a href=""><img src="img/facebook-icon.png" alt=""></a>
+					</div>
 				</div>
 			</div>
 		</div>
